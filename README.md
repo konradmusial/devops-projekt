@@ -1,15 +1,8 @@
-# Cykl życia i narzędzia DevOps
+# Opis projektu
+Product manager wyświetlający ceny produktów.
 
-Kolekcja skryptów i materiałów ćwiczeniowych dla studentów przedmiotu Cykl życia i narzędzia DevOps.
-
-Znajdziesz tutaj przykładowe zadania krok po kroku, skrypty PowerShell oraz krótkie instrukcje do pracy z platformą Azure i narzędziami DevOps.
-
-## Rozpiska zajęć (7 spotkań)
-
-1. 04/10/2025 — Wprowadzenie do platform Azure Portal i Azure DevOps - [lab1.md](lab1/lab1.md)
-2. 18/10/2025 — Linux i git - [lab2.md](lab2/lab2.md)
-3. 08/11/2025 — Docker - [lab3.md](lab3/lab3.md)
-4. 22/11/2025 — Docker Compose - [lab4.md](lab4/lab4.md)
-5. 06/12/2025 — Continuous Integration (CI) - [lab5.md](lab5/lab5.md)
-6. 20/12/2025 — Continuous Delivery (CD)
-7. 10/01/2026 — GitOps i podsumowanie
+# Instrukcja uruchomienia
+1. Otworzyć folder lab5/sample-ci/backend/ProductApi w Visual Studio Code  
+2. W terminalu wpisać dotnet run
+3. Otworzyć folder lab5/sample-ci/frontend
+4. Kliknąć na Index.html i kliknąć run -> start debugging
