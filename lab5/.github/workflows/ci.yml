@@ -1,0 +1,33 @@
+name: CI - Build & Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore
+      run: dotnet restore lab5/sample-ci/backend/ProductApi/ProductApi.csproj
+
+    - name: Build
+      run: dotnet build lab5/sample-ci/backend/ProductApi/ProductApi.csproj --configuration Release --no-restore
+
+    - name: Test
+      run: dotnet test lab5/sample-ci/backend/ProductApi.Tests/ProductApi.Tests.csproj --configuration Release --no-build --logger "trx"
+
+    - name: Publish Test Results
+      uses: dorny/test-reporter@v2
+      if: success() || failure()
+      with:
+        name: Backend Tests Report
+        path: "**/*.trx"
+        reporter: dotnet-trx

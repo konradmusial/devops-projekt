@@ -33,7 +33,9 @@ var products = new List<Product>
 // API endpoints
 app.MapGet("/", () => new { message = "Product API is running", version = "1.0" });
 
-app.MapGet("/api/products", () => products);
+app.MapGet("/products", () => products);
+
+app.MapGet("/products/names", () => products.Select(p => p.Name).ToList());
 
 app.MapGet("/api/products/{id}", (int id) =>
 {

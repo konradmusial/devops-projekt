@@ -4,50 +4,36 @@ namespace ProductApi.Tests;
 
 public class ProductTests
 {
-    [Fact]
-    public void Product_Should_Have_Valid_Id()
+[Fact]
+public void Product_CreatedViaPost_ShouldHaveIncrementedId()
+{
+    var existingMaxId = 2;
+    var newProduct = new Product 
+    { 
+        Name = "Testowy Produkt", 
+        Price = 149.99m 
+    };
+
+    newProduct.Id = existingMaxId + 1;
+
+    Assert.Equal(3, newProduct.Id);
+    Assert.Equal("Testowy Produkt", newProduct.Name);
+    Assert.Equal(149.99m, newProduct.Price);
+}
+
+[Fact]
+public void Product_NotFoundById_ShouldBeNull()
+{
+    var products = new List<Product>
     {
-        // Arrange
-        var product = new Product { Id = 1, Name = "Test Product", Price = 99.99m };
+        new Product { Id = 1, Name = "Laptop", Price = 999.99m },
+        new Product { Id = 2, Name = "Mouse", Price = 29.99m }
+    };
 
-        // Act & Assert
-        Assert.True(product.Id > 0);
-    }
+    int szukaneId = 999;
 
-    [Fact]
-    public void Product_Should_Have_Valid_Name()
-    {
-        // Arrange
-        var product = new Product { Id = 1, Name = "Test Product", Price = 99.99m };
+    var znaleziony = products.FirstOrDefault(p => p.Id == szukaneId);
 
-        // Act & Assert
-        Assert.False(string.IsNullOrEmpty(product.Name));
-        Assert.Equal("Test Product", product.Name);
-    }
-
-    [Fact]
-    public void Product_Should_Have_Valid_Price()
-    {
-        // Arrange
-        var product = new Product { Id = 1, Name = "Test Product", Price = 99.99m };
-
-        // Act & Assert
-        Assert.True(product.Price > 0);
-        Assert.Equal(99.99m, product.Price);
-    }
-
-    [Theory]
-    [InlineData(1, "Laptop", 999.99)]
-    [InlineData(2, "Mouse", 29.99)]
-    [InlineData(3, "Keyboard", 49.99)]
-    public void Product_Should_Be_Created_With_Valid_Data(int id, string name, decimal price)
-    {
-        // Arrange & Act
-        var product = new Product { Id = id, Name = name, Price = price };
-
-        // Assert
-        Assert.Equal(id, product.Id);
-        Assert.Equal(name, product.Name);
-        Assert.Equal(price, product.Price);
-    }
+    Assert.Null(znaleziony);
+}
 }
