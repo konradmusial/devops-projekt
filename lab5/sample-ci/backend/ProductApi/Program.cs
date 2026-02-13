@@ -12,6 +12,8 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader());
 });
 
+builder.Services.AddApplicationInsightsTelemetry("InstrumentationKey=cac29210-b7f2-462f-81d8-0e697c969ad1;IngestionEndpoint=https://polandcentral-0.in.applicationinsights.azure.com/;LiveEndpoint=https://polandcentral.livediagnostics.monitor.azure.com/;ApplicationId=d67835ef-9054-412a-a18a-7f7815d9d991");
+
 var app = builder.Build();
 
 // Configure middleware
