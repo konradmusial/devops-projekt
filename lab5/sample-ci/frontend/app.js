@@ -1,6 +1,6 @@
 // Simple Product Manager App
 
-const API_URL = 'http://localhost:5000/api/products';
+const API_URL = 'http://localhost:5000/products';
 
 async function loadProducts() {
     try {

@@ -1,6 +1,8 @@
-name: CI - Build & Test
+name: CI - Build & Test Backend
 
 on:
+  push:
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -22,12 +24,12 @@ jobs:
       run: dotnet build lab5/sample-ci/backend/ProductApi/ProductApi.csproj --configuration Release --no-restore
 
     - name: Test
-      run: dotnet test lab5/sample-ci/backend/ProductApi.Tests/ProductApi.Tests.csproj --configuration Release --no-build --logger "trx"
+      run: dotnet test lab5/sample-ci/backend/ProductApi.Tests/ProductApi.Tests.csproj --configuration Release --no-build --no-restore --logger "trx;LogFileName=test-results.trx" --results-directory TestResults
 
     - name: Publish Test Results
-      uses: dorny/test-reporter@v2
-      if: success() || failure()
+      uses: dorny/test-reporter@v1
+      if: always()
       with:
-        name: Backend Tests Report
-        path: "**/*.trx"
+        name: Backend Unit Tests
+        path: "**/TestResults/*.trx"
         reporter: dotnet-trx
