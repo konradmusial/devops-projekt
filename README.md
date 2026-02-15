@@ -1,5 +1,6 @@
 # Opis projektu
 projekt wyświetla produkty oraz ich cene.
+
 # Instrukcja uruchomienia
 1.otworzyć folder w vs code
 2.otworzyć nowy terminal i włączyć backend poniższymi komendami
